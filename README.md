@@ -44,6 +44,7 @@ cd eni-resource-finder
        --role arn:aws:iam::your-account-id:role/your-lambda-role \
        --handler lambda_function.lambda_handler \
        --zip-file fileb://function.zip
+       --output json
    ```
 
 ### Step 3: Update IAM Role
@@ -62,7 +63,8 @@ Attach the following [IAM Policy](#iam-policy-for-lambda-execution-role) to the 
    aws lambda invoke \
        --function-name eni-resource-finder \
        --payload '{"eni_id": "eni-xxxxxxxxxxxxxxxxx"}' \
-       response.json
+       --cli-binary-format raw-in-base64-out \
+       --output json
    ```
 
    Check the `response.json` file for the result:
