@@ -60,7 +60,7 @@ Attach the following [IAM Policy](#iam-policy-for-lambda-execution-role) to the 
 
    ```bash
    aws lambda invoke \
-       --function-name identify-eni-service \
+       --function-name eni-resource-finder \
        --payload '{"eni_id": "eni-xxxxxxxxxxxxxxxxx"}' \
        response.json
    ```
@@ -86,7 +86,7 @@ Attach the following [IAM Policy](#iam-policy-for-lambda-execution-role) to the 
 
 1. **Delete the Lambda Function**:
    ```bash
-   aws lambda delete-function --function-name identify-eni-service
+   aws lambda delete-function --function-name eni-resource-finder
    ```
 
 2. **Remove IAM Role (Optional)**:
@@ -94,12 +94,6 @@ Attach the following [IAM Policy](#iam-policy-for-lambda-execution-role) to the 
    ```bash
    aws iam detach-role-policy --role-name your-lambda-role --policy-arn arn:aws:iam::aws:policy/YourPolicy
    aws iam delete-role --role-name your-lambda-role
-   ```
-
-3. **Delete the S3 Bucket**:
-   ```bash
-   aws s3 rm s3://your-lambda-deployment-bucket --recursive
-   aws s3 rb s3://your-lambda-deployment-bucket
    ```
 
 ---
